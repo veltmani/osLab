@@ -2,7 +2,7 @@ ReplicaNumber: 3
 
 containers:
   containerPort: 8080
-  image: 'quay.io/veltmani/lib1'
+  image: 'quay.io/veltmani/lab1'
   tag: 'v2'
 
 service:
