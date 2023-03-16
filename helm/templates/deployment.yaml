@@ -4,13 +4,14 @@ metadata:
 # set your user name
   name: {{ .Release.Name }}
 spec:
-  replicas: {{ .Values.ReplicaNumber }}
   volumes:
     - name: index-html
       configMap:
         name: index.html
         defaultMode: 420
-  selector:
+
+  replicas: {{ .Values.ReplicaNumber }}
+    selector:
     matchLabels:
 # set your user name
       app: {{ .Release.Name }}
@@ -30,7 +31,8 @@ spec:
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: index-html
-              mountPath: /tmp/html # this will mount the html.index file to it application location
+              mountPath: >-
+                /tmp/html # this will mount the html.index file to it application location
 # update with the iamge you build in part 1
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
       restartPolicy: Always
