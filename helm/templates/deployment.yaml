@@ -11,9 +11,9 @@ spec:
         defaultMode: 420
   replicas: {{ .Values.ReplicaNumber }}
     selector:
-    matchLabels:
+      matchLabels:
 # set your user name
-      app: {{ .Release.Name }}
+        app: {{ .Release.Name }}
   template:
     metadata:
       labels:
