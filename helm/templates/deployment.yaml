@@ -15,6 +15,11 @@ spec:
 # set your user name
         app: {{ .Release.Name }}
     spec:
+      volumes:
+        - name: index-html
+          configMap:
+            name: index.html
+            defaultMode: 420
       containers:
         - resources: {}
           terminationMessagePath: /dev/termination-log
@@ -23,6 +28,9 @@ spec:
             - containerPort: {{ .Values.containers.containerPort }}
               protocol: TCP
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: index-html
+              mountPath: /tmp/html
 # update with the iamge you build in part 1
           image: {{ .Values.containers.image }}:{{ .Values.containers.tag }}
       restartPolicy: Always
